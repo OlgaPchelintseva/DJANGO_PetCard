@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page_title|default:"PetCard" }}</title>
+</head>
+<body>
+    <header>
+        <h1>PetCard</h1>
+        <p>В системе зарегистрировано <b>{{ total_public_pets }}</b> публичных питомцев</p>
+        <nav>
+            <a href="{% url 'pets:pet_create' %}">Добавить питомца</a>
+            <a href="{% url 'pets:vet_clinics' %}">Клиники</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
