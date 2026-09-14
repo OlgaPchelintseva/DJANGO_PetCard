@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Мои питомцы</h2>
+    <a href="{% url 'pets:pet_create' %}">Добавить нового</a>
+    {% if pets %}
+        <ul>
+            {% for pet in pets %}
+                <li>
+                    <a href="{{ pet.get_absolute_url }}">{{ pet.name }} ({{ pet.breed }})</a>
+                    {% if not pet.is_public %}
+                        <span>(приватный)</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>У вас еще нет питомца! Добавьте первого!</p>
+    {% endif %}
+{% endblock %}

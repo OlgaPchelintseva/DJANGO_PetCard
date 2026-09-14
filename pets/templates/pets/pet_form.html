@@ -1,1 +1,16 @@
 {% extends 'base.html' %}
+{% block content %}
+    <h2>
+        {% if object %}Редактировать
+        {% else %}Добавить
+        {% endif %}питомца
+    </h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+    {% if object %}
+        <a href="{% url 'pets:pet_delete' slug=object.slug %}">Удалить карточку этого питомца</a>
+    {% endif %}
+{% endblock %}
