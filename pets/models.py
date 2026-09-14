@@ -7,7 +7,7 @@ class Pet(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pets', verbose_name='Владелец')
     name = models.CharField(max_length=100, verbose_name='Кличка')
     breed = models.CharField(max_length=100, verbose_name='Порода')
-    slug = models.SlugField(max_length=200, unique=True, db_index=True, verbose_name='ЧПУ-ссылка') # db_index - быстрая ссылка
+    slug = models.SlugField(max_length=200, unique=True, db_index=True, null=True, blank=True, verbose_name='ЧПУ-ссылка') # db_index - быстрая ссылка
     bio = models.TextField(verbose_name='Особенности ухода, рацион, противопоказания')
     is_public = models.BooleanField(default=True, verbose_name='Публичный доступ')
 

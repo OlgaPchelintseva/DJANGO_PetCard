@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pets.middleware.PerfomanceLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'PetCard.urls'
@@ -62,11 +63,18 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'pets.context_processors.pets_stats',
+                'pets.context_processors.pet_stats',
             ],
         },
     },
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'petcard-unique-id',
+    },
+}
 
 WSGI_APPLICATION = 'PetCard.wsgi.application'
 

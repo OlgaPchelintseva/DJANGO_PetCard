@@ -18,3 +18,4 @@ class PetOwnerRequiredMixin(AccessMixin):
         if self.object.owner != request.user:
             raise PermissionDenied('Вы не являетесь владельцем этого питомца')
         return super().dispatch(request, *args, **kwargs)
+    

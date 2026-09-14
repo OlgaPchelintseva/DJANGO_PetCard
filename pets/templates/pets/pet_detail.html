@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load cache %} {# ОБЯЗАТЕЛЬНО ЗАГРУЗИТЬ ТЕГ #} 
+{% block content %}
+    <h1>{{ pet.name }} ({{ pet.breed }})</h1>
+    <p>Особенности: {{ pet.bio }}</p>
+    <a href="{% url 'pets:pet_update' slug=pet.slug %}">Редактировать</a>
+
+    {% cache 600 emergency sidebar pet.slug%}
+        <aside style="border: 1px solid red;">
+            <h2>Экстренные службы</h2>
+            <ul>
+                <li>Круглосуточная клиника "Айболит"</li>
+                <li>Токсикологический центр</li>
+                <!-- АПИ запрос -->
+            </ul>
+        </aside>
+    {% endcache %}
+{% endblock %}
